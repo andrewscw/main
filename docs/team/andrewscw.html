@@ -862,7 +862,7 @@ semester you entered!</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/FindCapManager.png" alt="FindCapManager" width="][height="450"">
+<img src="../images/FindCapManager.png" alt="FindCapManager" width="790">
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -922,33 +922,53 @@ the cap entry&#8217;s index with the <code>edit-cap</code> command or the cap en
 <p>The sequence diagram below shows how the editing of cap entries work when the user enters
 <code>edit-cap</code></p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="../images/EditCapManagerSequenceDiagram.png" alt="EditCapManagerSequenceDiagram" width="800">
 </div>
+<div class="title">Figure 1. (figure description)</div>
 </div>
 <div class="paragraph">
 <p>The sequence diagram for the "Update Module Semester" reference frame above can be seen below.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock text-center">
 <div class="content">
 <img src="../images/EditCapManagerSequenceDiagram2.png" alt="EditCapManagerSequenceDiagram2" width="800">
 </div>
+<div class="title">Figure 2. (figure description)</div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario of how <code>edit-cap</code> behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p><strong>Step 1</strong>: The user executes <code>edit-cap 2 g/A sem/Y2S2</code> to edit the cap entry in the 2nd index with grade A and
+<p><strong>Step 1</strong>: The user launches the application and opens the CAP Manager.</p>
+</div>
+<div class="paragraph">
+<p><strong>Step 2</strong>: There are already existing CAP entries. The user now executes <code>edit-cap 2 g/A sem/Y2S2</code> to edit the cap entry in the 2nd index with grade A and
 moduleSemester of <code>Y2S2</code>.</p>
 </div>
 <div class="paragraph">
-<p><strong>Step 2</strong>: The user executes <code>edit-cap 2 g/A sem/Y2S2</code> to edit the cap entry in the 2nd index with grade A and
-moduleSemester of <code>Y2S2</code>.</p>
+<p><strong>Step 3</strong>: Upon executing this command, the <code>EditCapCommandParser</code> will take in all the arguments inputted and create a
+<code>EditCapCommand</code> object. This object is then returned to the <code>Logic Manager</code> which will then execute the <code>EditCommand</code></p>
 </div>
 <div class="paragraph">
-<p><strong>Step 3</strong>: The user executes <code>edit-cap 2 g/A sem/Y2S2</code> to edit the cap entry in the 2nd index with grade A and
-moduleSemester of <code>Y2S2</code>.</p>
+<p><strong>Step 4</strong>: When executing the <code>EditCapCommand</code> this alters the attributes of the CAP Entry in the UniqueCapEntryList object of
+UltiStudent by setCapEntry(a,b) method, where <code>a</code> is the cap entry to edit, and <code>b</code> is the edited cap entry.
+In doing so, this will call the method of <code>updateCapForDelete(a)</code> and <code>updateCapForAdd(b)</code>, which will update the CAP score.</p>
+</div>
+<div class="paragraph">
+<p><strong>Step 5</strong>: Next, the <code>UniqueModuleSemesterList</code> will be updated. This is done by the <code>updateModuleSemesterList(x,y)</code> where <code>x</code> is
+the <code>moduleSemesterOfCapEntry</code> to edit, while <code>y</code> is the <code>moduleSemesterOfEditedCapEntry</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Step 6</strong>: If <code>moduleSemesterOfCapEntry</code> is different from <code>moduleSemesterOfEditedCapEntry</code>, the <code>model</code> will check if it
+contains <code>moduleSemesterOfEditedCapEntry</code>. If it does not, <code>moduleSemesterOfEditedCapEntry</code> will be added to
+the <code>UniqueModuleSemesterList</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Step 7</strong>: On the other hand, if the <code>model</code> does not have any cap entries with the same semesters as
+<code>moduleSemesterOfCapEntry</code> after editing the cap entries, which is reflected if <code>hasCapEntriesWithSameSemester</code> is false.
+The <code>moduleSemesterOfCapEntryToEdit</code> will be deleted to the <code>UniqueModuleSemesterList</code>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -965,7 +985,8 @@ moduleSemester of <code>Y2S2</code>.</p>
 <p>Pros: Easy to implement.</p>
 </li>
 <li>
-<p>Cons: Diffi</p>
+<p>Cons: Since a static variable belongs to the CapEntry class, there may be unintended side effects when we use commands
+to modify the <code>UniqueCapEntryList</code>.</p>
 </li>
 </ul>
 </div>
@@ -987,7 +1008,7 @@ moduleSemester of <code>Y2S2</code>.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_aspect_how_to_calculate_score_of_module_grade">Aspect: How to calculate score of module grade.</h5>
+<h5 id="_aspect_how_to_assign_score_for_module_grade">Aspect: How to assign score for module grade.</h5>
 <div class="ulist">
 <ul>
 <li>
@@ -1011,7 +1032,7 @@ moduleSemester of <code>Y2S2</code>.</p>
 <p>Pros: Easier readability.</p>
 </li>
 <li>
-<p>Cons: Slower time complexity, worst case O(N).</p>
+<p>Cons: Slower time complexity, worst case of O(N).</p>
 </li>
 </ul>
 </div>
@@ -1022,10 +1043,10 @@ moduleSemester of <code>Y2S2</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_finding_a_cap_entry_delete_cap">Finding a Cap Entry : <code>delete-cap</code></h3>
+<h3 id="_deleting_a_cap_entry_delete_cap">Deleting a Cap Entry : <code>delete-cap</code></h3>
 <div class="paragraph">
 <p>This feature allows the user to delete a cap entry from the cap entry list. Users can do so either via:
-the cap entry&#8217;s index with the <code>edit-cap</code> command or the cap entry&#8217;s module code with the <code>edit-cap-mc</code></p>
+the cap entry&#8217;s index with the <code>delete-cap</code> command or the cap entry&#8217;s module code with the <code>delete-cap INDEX</code></p>
 </div>
 <div class="sect3">
 <h4 id="_current_implementation_2">Current Implementation</h4>
@@ -1034,29 +1055,38 @@ the cap entry&#8217;s index with the <code>edit-cap</code> command or the cap en
 </div>
 <div class="paragraph">
 <p>The activity diagram below shows how the deleting of cap entries work when the user enters
-<code>delete-cap</code></p>
+<code>delete-cap</code>.</p>
 </div>
-<div class="imageblock">
+<div class="exampleblock">
+<div class="content">
+<div class="imageblock text-center">
 <div class="content">
 <img src="../images/DeleteCapManagerActivityDiagram.png" alt="DeleteCapManagerActivityDiagram" width="800">
 </div>
+<div class="title">Figure 3. (image description)</div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario of how <code>delete-cap</code> behaves at each step.</p>
 </div>
 <div class="paragraph">
-<p><strong>Step 1</strong>: The user executes <code>edit-cap 2 g/A sem/Y2S2</code> to edit the cap entry in the 2nd index with grade A and
-moduleSemester of <code>Y2S2</code>.</p>
+<p><strong>Step 1</strong>: The user executes <code>delete-cap 2</code> to delete the cap entry in the 2nd index.</p>
 </div>
 <div class="paragraph">
-<p><strong>Step 2</strong>: The user executes <code>edit-cap 2 g/A sem/Y2S2</code> to edit the cap entry in the 2nd index with grade A and
-moduleSemester of <code>Y2S2</code>.</p>
+<p><strong>Step 2</strong>: Upon executing this command, the <code>DeleteCapCommandParser</code> parses the arguments and checks if the arguments are valid.
+If not valid, the command throws an exception and terminates.</p>
 </div>
+<div class="paragraph">
+<p><strong>Step 3</strong>: If the argument is valid, the command checks if the <code>CapEntry</code> exists in the CAP Manager. If it does, the entry is deleted.
+The <code>UniqueCapEntryList</code> is then updated and the CAP score is updated as well.</p>
 </div>
-<div class="sect3">
-<h4 id="_design_considerations_2">Design Considerations</h4>
-<div class="sect4">
-<h5 id="_aspect_how_to_store_the_cap_score_2">Aspect: How to store the Cap Score.</h5>
+<div class="paragraph">
+<p><strong>Step 4</strong>: Check if after deleting the target <code>CapEntry</code> the <code>UniqueCapEntryList</code> still has a <code>CapEntry</code> of the same semester. If there is,
+the module semester will be deleted from the <code>UniqueModuleSemesterList</code>. Then the <code>UniqueModuleSemesterList</code> will be updated.</p>
+</div>
+<div class="paragraph">
+<p>==== Design Considerations
+===== Aspect: How to store the Cap Score.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -1087,9 +1117,9 @@ moduleSemester of <code>Y2S2</code>.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>===== Aspect: How to calculate score of module grade.</p>
 </div>
-<div class="sect4">
-<h5 id="_aspect_how_to_calculate_score_of_module_grade_2">Aspect: How to calculate score of module grade.</h5>
 <div class="ulist">
 <ul>
 <li>
@@ -1120,15 +1150,14 @@ moduleSemester of <code>Y2S2</code>.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>== PROJECT: UltiStudent</p>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_project_ultistudent_2">PROJECT: UltiStudent</h2>
-<div class="sectionbody">
 <hr>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>

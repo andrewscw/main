@@ -1077,6 +1077,79 @@ _{ more test cases ... }_
 
 _{ more test cases ... }_
 
+=== Deleting a cap entry
+
+. Deleting a cap entry while all cap entries are listed
+
+.. Prerequisites: Use the sample data that using SampleDataUtil. SampleDataUtil automatically generates sample Data when the
+UltiStudent.json file is corrupted or unavailable.
+.. Test case: `delete-cap 1` +
+   Expected: First cap entry is deleted. Details of the deleted cap entry shown in the status message.
+   Timestamp in the status bar is updated. CAP score displayed is updated.
+.. Test case: `delete-cap 0` +
+   Expected: No cap entry is deleted. Error details shown in the status message. Status bar remains the same.
+   Current CAP score stays the same.
+.. Test case: `delete-cap x` where x is larger than the list size +
+   Expected: No cap entry is deleted. Error details shown in the status message. Status bar remains the same.
+   Current CAP score stays the same.
+.. Test case: `delete-cap x` where x is negative number +
+   Expected: No cap entry is deleted. Error details shown in the status message. Status bar remains the same.
+   Current CAP score stays the same.
+
+.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +
+   Expected: Similar to previous.
+
+_{ more test cases ... }_
+
+
+=== Editing a cap entry
+
+. Editing a cap entry while all cap entries are listed
+
+.. Prerequisites: Use the sample data that using SampleDataUtil. SampleDataUtil automatically generates sample Data when the
+UltiStudent.json file is corrupted or unavailable.
+.. Test case: `edit-cap 1 g/A mcs/4` +
+   Expected: First cap entry is edited. Details of the first cap entry shown in the status message.
+   Timestamp in the status bar is updated. CAP score displayed is updated.
+.. Test case: `edit-cap 0 g/A mcs/4` +
+   Expected: No cap entry is edit. Error details shown in the status message. Status bar remains the same.
+   Current CAP score stays the same.
+.. Test case: `edit-cap x g/B mcs/4` where x is larger than the list size +
+   Expected: No cap entry is deleted. Error details shown in the status message. Status bar remains the same.
+   Current CAP score stays the same.
+.. Test case: `edit-cap x g/B mcs/4` where x is negative number +
+   Expected: No cap entry is deleted. Error details shown in the status message. Status bar remains the same.
+   Current CAP score stays the same.
+
+.. Other incorrect edit commands to try: `edit`, `edit x` (where x is larger than the list size) _{give more}_ +
+   Expected: Similar to previous.
+
+_{ more test cases ... }_
+
+=== Adding a cap entry
+
+. Adding a cap entry while all cap entries are listed
+
+.. Prerequisites: Use the sample data that using SampleDataUtil. SampleDataUtil automatically generates sample Data when the
+UltiStudent.json file is corrupted or unavailable.
+.. Test case: `add-cap mc/CS1010 g/B mcs/4 sem/y1s1` +
+   Expected: First cap entry is edited. Details of the first cap entry shown in the status message.
+   Timestamp in the status bar is updated. CAP score displayed is updated.
+.. Test case: `add-cap 0` +
+   Expected: No cap entry is edit. Error details shown in the status message. Status bar remains the same.
+   Current CAP score stays the same.
+.. Test case: `add-cap x g/B mcs/4` where x is larger than the list size +
+   Expected: No cap entry is deleted. Error details shown in the status message. Status bar remains the same.
+   Current CAP score stays the same.
+.. Test case: `add-cap mc/CS1010 g/B mcs/4 sem/y1s1` where x is negative number +
+   Expected: No cap entry is deleted. Error details shown in the status message. Status bar remains the same.
+   Current CAP score stays the same.
+
+.. Other incorrect edit commands to try: `edit`, `edit x` (where x is larger than the list size) _{give more}_ +
+   Expected: Similar to previous.
+
+_{ more test cases ... }_
+
 === Saving data
 
 . Dealing with missing/corrupted data files
