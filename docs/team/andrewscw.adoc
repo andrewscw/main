@@ -110,7 +110,6 @@ https://github.com/CS2103-AY1819S2-W15-1/main/issues/131[131])
 include::../UserGuide.adoc[tag=capmanager]
 include::../UserGuide.adoc[tag=add-cap]
 include::../UserGuide.adoc[tag=edit-cap]
-include::../UserGuide.adoc[tag=find-sem]
 
 
 == Contributions to the Developer Guide

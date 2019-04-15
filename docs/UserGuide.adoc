@@ -451,10 +451,6 @@ command to input to the Command Box would be:
 
 * `add-cap mc/CS2101 g/B+ mcs/4 sem/Y2S2`
 
-Before adding
-
-image::OpenCapManager.png[width="790"]
-
 After entering `add-cap mc/CS2101 g/B+ mcs/4 sem/Y2S2` into the command box.
 
 image::AddCapManager.png[width="790"]
@@ -488,11 +484,6 @@ Given this scenario, the command to input to the Command Box would be:
 * `edit-cap 15 g/A sem/y3s1` +
 
 Let's put it to use!
-
-Before editing:
-
-image::AddCapManager.png[width="790"]
-
 
 After editing:
 

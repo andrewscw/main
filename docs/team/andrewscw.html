@@ -756,14 +756,6 @@ command to input to the Command Box would be:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Before adding</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/OpenCapManager.png" alt="OpenCapManager" width="790">
-</div>
-</div>
-<div class="paragraph">
 <p>After entering <code>add-cap mc/CS2101 g/B+ mcs/4 sem/Y2S2</code> into the command box.</p>
 </div>
 <div class="imageblock">
@@ -818,14 +810,6 @@ for the case of retaking a module.</p>
 <p>Let&#8217;s put it to use!</p>
 </div>
 <div class="paragraph">
-<p>Before editing:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/AddCapManager.png" alt="AddCapManager" width="790">
-</div>
-</div>
-<div class="paragraph">
 <p>After editing:</p>
 </div>
 <div class="imageblock">
@@ -844,51 +828,6 @@ This of course includes the module list, semester list and your CAP score!</p>
 In addition, do take note that at least one of the optional fields has to be provided.</p>
 </li>
 </ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_filtering_a_cap_entry_find_sem">Filtering a CAP entry: <code>find-sem</code></h4>
-<div class="paragraph">
-<p>Format: <code>find-sem MODULESEMESTER &#8230;&#8203;</code></p>
-</div>
-<div class="paragraph">
-<p>Here at UltiStudent, we understand that students have many modules and it can become difficult to find and filter
-through the many modules that they take. To help you with this, the <code>find-sem</code> will be handy!</p>
-</div>
-<div class="paragraph">
-<p>Let&#8217;s say you would like to view all the modules that you took in Year 1 Semester 2.
-Simply type <code>find-sem Y1S2</code> into the Command Box and the module list will be updated rightaway to show the modules ou took in the
-semester you entered!</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/FindCapManager.png" alt="FindCapManager" width="790">
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<div class="title">:bulb:</div>
-</td>
-<td class="content">
-Psst..! You can use the find-sem command to view more than 1 semester of modules if you wish!
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock caution">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Caution</div>
-</td>
-<td class="content">
-Do be careful and know that your CAP reflected in CAP indicator is still for that of all your modules.
-CAP indicator does not calculate your CAP score for only the displayed modules!
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
@@ -1057,13 +996,10 @@ the cap entry&#8217;s index with the <code>delete-cap</code> command or the cap 
 <p>The activity diagram below shows how the deleting of cap entries work when the user enters
 <code>delete-cap</code>.</p>
 </div>
-<div class="exampleblock">
-<div class="content">
 <div class="imageblock text-center">
 <div class="content">
 <img src="../images/DeleteCapManagerActivityDiagram.png" alt="DeleteCapManagerActivityDiagram" width="800">
 </div>
-<div class="title">Figure 3. (image description)</div>
 </div>
 <div class="paragraph">
 <p>Given below is an example usage scenario of how <code>delete-cap</code> behaves at each step.</p>
@@ -1083,10 +1019,11 @@ The <code>UniqueCapEntryList</code> is then updated and the CAP score is updated
 <p><strong>Step 4</strong>: Check if after deleting the target <code>CapEntry</code> the <code>UniqueCapEntryList</code> still has a <code>CapEntry</code> of the same semester. If there is,
 the module semester will be deleted from the <code>UniqueModuleSemesterList</code>. Then the <code>UniqueModuleSemesterList</code> will be updated.</p>
 </div>
-<div class="paragraph">
-<p>==== Design Considerations
-===== Aspect: How to store the Cap Score.</p>
 </div>
+<div class="sect3">
+<h4 id="_design_considerations_2">Design Considerations</h4>
+<div class="sect4">
+<h5 id="_aspect_how_to_store_the_cap_score_2">Aspect: How to store the Cap Score.</h5>
 <div class="ulist">
 <ul>
 <li>
@@ -1117,9 +1054,9 @@ the module semester will be deleted from the <code>UniqueModuleSemesterList</cod
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>===== Aspect: How to calculate score of module grade.</p>
 </div>
+<div class="sect4">
+<h5 id="_aspect_how_to_calculate_score_of_module_grade">Aspect: How to calculate score of module grade.</h5>
 <div class="ulist">
 <ul>
 <li>
@@ -1150,20 +1087,21 @@ the module semester will be deleted from the <code>UniqueModuleSemesterList</cod
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>== PROJECT: UltiStudent</p>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_project_ultistudent_2">PROJECT: UltiStudent</h2>
+<div class="sectionbody">
 <hr>
-</div>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-04-15 20:05:39 +0800
+Last updated 2019-04-15 22:53:27 +0800
 </div>
 </div>
 </body>

@@ -743,8 +743,6 @@ The `delete-cap` command is facilitated by the Logic and Model components of the
 The activity diagram below shows how the deleting of cap entries work when the user enters
 `delete-cap`.
 
-=======
-.(image description)
 image::DeleteCapManagerActivityDiagram.png[width="800", align="center"]
 
 Given below is an example usage scenario of how `delete-cap` behaves at each step.
