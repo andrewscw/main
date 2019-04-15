@@ -24,6 +24,7 @@ image::limzhengjiebenjamin.png[width="150", align="left"]
 {empty}[http://github.com/LimZhengJieBenjamin[github]] [<<limzhengjiebenjamin#, portfolio>>]
 
 Role: Team Lead
+
 Responsibilities: UI
 
 '''
@@ -33,6 +34,7 @@ image::andrewscw.png[width="150", align="left"]
 {empty}[http://github.com/andrewscw[github]] [<<andrewscw#, portfolio>>]
 
 Role: Developer
+
 Responsibilities: Data
 
 '''
@@ -42,6 +44,7 @@ image::ngweixin.png[width="150", align="left"]
 {empty}[http://github.com/NgWeiXin[github]] [<<ngweixin#, portfolio>>]
 
 Role: Developer
+
 Responsibilities: Dev Ops + Threading
 
 '''
@@ -51,6 +54,7 @@ image::shimeilee.png[width="150", align="left"]
 {empty}[http://github.com/shimeilee[github]] [<<shimeilee#, portfolio>>]
 
 Role: Developer
+
 Responsibilities: UI
 
 '''

@@ -427,6 +427,7 @@ list of module codes. We considered using a hash map to map the module code to t
 to check if the module code list has to be updated for each edit.
 
 [width="80%",cols=2*,options="header"]
+
 |===
 |Design Consideration |Pros and Cons
 |Update ModuleList by iteration (Current Choice) | *Pros:* Protects the abstraction layers and modularity
@@ -612,6 +613,58 @@ complexities involved when taking into account the different cases upon using
 
 // tag::edit-note[]
 === Editing and Saving a note : `edit-note` `save-note`
+|====
+|These two feature allows the user to edit existing note and save them after editing.
+|====
+
+==== Overview
+The `edit-note` command helps the user to open the selected notes to allow the user to start editing its content
+by displaying all the content on the `NotesManagerMainPanel` which is a text field. It requires the need of the
+`save-note` command to help save the user's edits
+
+Below is an activity diagram of how the users use `edit-note` and `save-note` to facilitate adding contents to
+their existing notes:
+
+image::Edit&SaveNoteActivityDiagram.png[width=800]
+
+*Step 1*: User will key in `edit-note INDEX` on the command line
+
+*Step 2*: System will do a validation check to see if `INDEX` of note exist in the list of notes in the `Model`.
+If note does not exist, it will throw a `ParserException` to the user. Else note will be opened and proceed to
+step 3.
+
+*Step 3*: Once it is opened, `NotesManagerMainPanel` will be enabled, allowing the user to start typing their
+notes in the text field.
+
+*Step 4*: When the user is done editing, he/she can use `save-note` in the command line to save the edited
+content to the opened note.
+
+*Step 5*: Upon successful save, `NotesManagerMainPanel` will be disabled and user will not be able to type
+anything on `NotesManagerMainPanel`
+
+==== Design Considerations
+
+|===
+|*Options*|*Pro*|*Cons*
+|*1.* Users to type their content on the command line
+|- Easy implementation +
+ - Single source of input +
+ - No need to handle special key press
+|- Not user friendly +
+ - Non-editable visual (textfield) +
+ - Special commands for `NotesManager` to take in input from Command Line as note's content +
+ - A need to convert from Command Line mode to Text Input mode
+|*2.* Users to type their content on the `NotesManagerMainPanel`
+|- User friendly +
+ - A separate source of input +
+|- Two sources of input, Command Line and TextField +
+ - Harder implementation, requires handling of special key press
+|===
+
+Option 2 is being selected and implemented as we focus on the users convenience and the ability to edit their
+notes easily. Separation of command line and notes text field would reduce the number of commands the user
+has to remember and there will be lesser confusion of command line mode or text input mode.
+
 // end::edit-note[]
 
 // tag::edit-cap[]
